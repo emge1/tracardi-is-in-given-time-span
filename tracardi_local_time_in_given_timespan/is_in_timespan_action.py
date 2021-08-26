@@ -28,10 +28,9 @@ class IsInLocalTimeSpan(ActionRunner):
         end = self.end
 
         times = [start, end]
-        try:
-            for time in times:
-                if time != datetime.strptime(time, '%H:%M:%S').strftime('%H:%M:%S'):
-                    raise ValueError(f'Configure the time properly: hour:minute:second, in 24-hour clock format')
+        for time in times:
+            if time != datetime.strptime(time, '%H:%M:%S').strftime('%H:%M:%S'):
+                raise ValueError('Configure the time properly: hour:minute:second, in 24-hour clock format')
 
 
     @staticmethod
@@ -42,8 +41,8 @@ class IsInLocalTimeSpan(ActionRunner):
     async def run(self, payload):
         dot = DotAccessor(self.profile, self.session, payload, self.event, self.flow)
         time_zone = dot[self.timezone]
-        start_time = dot[self.start]
-        end_time = dot[self.end]
+        start_time = datetime.strptime(dot[self.start], '%H:%M:%S')
+        end_time = datetime.strptime(dot[self.end], '%H:%M:%S')
 
         if not self._validate_timezone(time_zone):
             raise ValueError("Your configuration {} points to value {}. And the value is not valid time zone.".format(
