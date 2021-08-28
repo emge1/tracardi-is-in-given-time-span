@@ -7,7 +7,7 @@ from tracardi_plugin_sdk.domain.result import Result
 from tracardi_local_timespan.model.configuration import TimeSpanConfiguration
 
 
-class IsInLocalTimeSpan(ActionRunner):
+class LocalTimeSpanAction(ActionRunner):
 
     def __init__(self, **kwargs):
         self.config = TimeSpanConfiguration(**kwargs)
@@ -38,7 +38,7 @@ def register() -> Plugin:
         debug=False,
         spec=Spec(
             module='tracardi_local_timespan.plugin',
-            className='IsInLocalTimeSpan',
+            className='LocalTimeSpanAction',
             inputs=['payload'],
             outputs=['in_time_span'],
             manual='is_in_time_span',
