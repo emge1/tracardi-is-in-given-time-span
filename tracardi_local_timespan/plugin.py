@@ -4,7 +4,7 @@ from tracardi_dot_notation.dot_accessor import DotAccessor
 from tracardi_plugin_sdk.domain.register import Plugin, Spec, MetaData
 from tracardi_plugin_sdk.action_runner import ActionRunner
 from tracardi_plugin_sdk.domain.result import Result
-from tracardi_local_time_in_timespan.model.configuration import TimeSpanConfiguration
+from tracardi_local_timespan.model.configuration import TimeSpanConfiguration
 
 
 class IsInLocalTimeSpan(ActionRunner):
@@ -37,7 +37,7 @@ def register() -> Plugin:
         start=False,
         debug=False,
         spec=Spec(
-            module='tracardi_local_time_timespan.plugin',
+            module='tracardi_local_timespan.plugin',
             className='IsInLocalTimeSpan',
             inputs=['payload'],
             outputs=['in_time_span'],
