@@ -42,7 +42,7 @@ def register() -> Plugin:
             inputs=['payload'],
             outputs=['in_time_span'],
             manual='is_in_time_span',
-            version="0.1",
+            version="0.1.1",
             author="Marcin Gaca",
             init={
                 "timezone": "session@context.time.tz",
@@ -56,7 +56,7 @@ def register() -> Plugin:
             type='flowNode',
             width=200,
             height=100,
-            icon='dark-light',
+            icon='profiler',
             group=["Time"]
         )
     )
