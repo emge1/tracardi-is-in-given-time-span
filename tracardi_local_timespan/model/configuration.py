@@ -5,8 +5,12 @@ from pydantic import BaseModel
 
 class TimeSpanConfiguration(BaseModel):
     timezone: str
-    start: datetime
-    end: datetime
+    start: str
+    end: str
+
+    @staticmethod
+    def _convert(hour_string):
+        return datetime.strptime(hour_string, '%H:%M:%S')
 
     def is_in_timespan(self):
         now = datetime.utcnow()
@@ -14,7 +18,9 @@ class TimeSpanConfiguration(BaseModel):
         tz = pytz.timezone(self.timezone)
         local_now = now.replace(tzinfo=pytz.utc).astimezone(tz)
 
-        now_hour_string = datetime.strftime(local_now, '%H:%M:%S')
-        now_hour = datetime.strptime(now_hour_string, '%H:%M:%S')
+        hour_string = datetime.strftime(local_now, '%H:%M:%S')
+        now_hour = self._convert(hour_string)
+        start = self._convert(self.start)
+        end = self._convert(self.end)
 
-        return self.start < now_hour < self.end
+        return start < now_hour < end

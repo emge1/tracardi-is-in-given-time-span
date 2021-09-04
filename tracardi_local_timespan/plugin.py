@@ -29,7 +29,7 @@ class LocalTimeSpanAction(ActionRunner):
         if self.config.is_in_timespan():
             return Result(value=True, port="in_time_span")
 
-        return Result(value=True, port="in_time_span")
+        return Result(value=False, port="in_time_span")
 
 
 def register() -> Plugin:
@@ -42,6 +42,8 @@ def register() -> Plugin:
             inputs=['payload'],
             outputs=['in_time_span'],
             manual='is_in_time_span',
+            version="0.1",
+            author="Marcin Gaca",
             init={
                 "timezone": "session@context.time.tz",
                 "start": None,
@@ -49,7 +51,7 @@ def register() -> Plugin:
             }
         ),
         metadata=MetaData(
-            name='Is In time span checker',
+            name='Local time span',
             desc='Checks if an event is in given time span',
             type='flowNode',
             width=200,
