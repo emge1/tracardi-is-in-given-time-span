@@ -2,7 +2,7 @@
 
 This code can be run within Tracardi workflow.
 
-# Is in time span action
+# Local time span action
 
 The purpose of this plugin is to check if the local time is within 
 defined time span.
