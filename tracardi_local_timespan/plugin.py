@@ -27,9 +27,9 @@ class LocalTimeSpanAction(ActionRunner):
             ))
 
         if self.config.is_in_timespan():
-            return Result(value=True, port="in_time_span")
+            return Result(value=True, port="in"), Result(value=None, port="out")
 
-        return Result(value=False, port="in_time_span")
+        return Result(value=None, port="in"), Result(value=True, port="out")
 
 
 def register() -> Plugin:
@@ -40,8 +40,8 @@ def register() -> Plugin:
             module='tracardi_local_timespan.plugin',
             className='LocalTimeSpanAction',
             inputs=['payload'],
-            outputs=['in_time_span'],
-            manual='is_in_time_span',
+            outputs=['in', 'out'],
+            manual='local_timespan',
             version="0.1.1",
             author="Marcin Gaca",
             init={
