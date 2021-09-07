@@ -42,7 +42,7 @@ def register() -> Plugin:
             inputs=['payload'],
             outputs=['in', 'out'],
             manual='local_timespan',
-            version="0.1.1",
+            version="0.1.2",
             author="Marcin Gaca",
             init={
                 "timezone": "session@context.time.tz",
